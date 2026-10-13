@@ -4,7 +4,9 @@ this project is a simple soacket broadcast app that is built with Golang with th
 
 # How To Run
 first you will have to run this command to compile
-> go build -o ./bin/broadcast-server .
+```
+ go build -o ./bin/broadcast-server .
+```
 
 then to run the server , enter:
 ```
@@ -14,6 +16,8 @@ then to run the server , enter:
  ```
 
 the same thing for the client, enter:
-> ./broadcast-server connect <URL> -p <PORT>
+```
+ ./broadcast-server connect <URL> -p <PORT>
+```
 
-
+on the client side you can quit by entering '/quit' or just pressing Ctrl+C
