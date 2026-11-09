@@ -17,7 +17,7 @@ then to run the server , enter:
 
 the same thing for the client, enter:
 ```
- ./broadcast-server connect <URL> -p <PORT>
+ ./broadcast-server connect <URL>:<PORT> <USER_NAME>
 ```
 
 on the client side you can quit by entering '/quit' or just pressing Ctrl+C

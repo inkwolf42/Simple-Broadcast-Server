@@ -17,6 +17,7 @@ func broadcastMessageFromServer(msg string) {
 	}
 	fmt.Printf("%-25s > %s\n", "Server", msg)
 }
+
 func broadcastMessage(client Client, msg string) {
 	for _, c := range GetClients() {
 		var buf []byte
@@ -25,13 +26,13 @@ func broadcastMessage(client Client, msg string) {
 	}
 	fmt.Printf("%-25s > %s", client.Name, msg)
 }
+
 func handleConnection(conn net.Conn) {
 	defer conn.Close()
 
 	readingBuff := bufio.NewReader(conn)
 
 	name, err := readingBuff.ReadString('\n')
-
 	if err != nil {
 		println("Client Disconnected!")
 		return
@@ -60,7 +61,6 @@ func handleConnection(conn net.Conn) {
 
 	for {
 		message, err := readingBuff.ReadString('\n')
-
 		if err != nil {
 			broadcastMessageFromServer("The user \"" + name + "\" Has Left.")
 			break
@@ -70,7 +70,7 @@ func handleConnection(conn net.Conn) {
 }
 
 func Run() {
-	listener, err := net.Listen("tcp", "localhost:8080")
+	listener, err := net.Listen("tcp", "0.0.0.0:8080")
 	if err != nil {
 		print("failed to init server listener : ")
 		println(err)
@@ -79,7 +79,7 @@ func Run() {
 
 	defer listener.Close()
 	fmt.Print("\033[2J")
-	print("Server is running on localhost:8080.\n")
+	print("Server is running on 0.0.0.0:8080.\n")
 
 	for {
 		conn, err := listener.Accept()
